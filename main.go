@@ -69,14 +69,15 @@ func toChar(i int) rune {
 func main() {
 	flags := flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
-	start := flags.String("column", "T", "first column to calculate from")
-	weeks := flags.Int("weeks", 52, "number of weeks to include")
-	row := flags.Int("row", 3, "row to calculate for")
+	start := *flags.String("column", "T", "first column to calculate from [T]")
+	weeks := *flags.Int("weeks", 52, "number of weeks to include [52]")
+	row := *flags.Int("row", 3, "row to calculate for [3]")
+	equations := *flags.Int("equations", 4, "number of equations to write (each one is one week) [4]")
 
 	flags.Parse(os.Args[1:])
 
-	for i := 0; i < 4; i++ {
-		formula := generateFormula(*start, *row, *weeks, i)
+	for i := 0; i < equations; i++ {
+		formula := generateFormula(start, row, weeks, i)
 		fmt.Printf("Week %d:\n%s\n", i+1, formula)
 	}
 }
