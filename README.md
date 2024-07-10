@@ -6,10 +6,10 @@ Script to produce Excel formulas to calculate bench levels for the next 4 weeks
 
 Available flags
 
--column = start column (string) for calculation (default=T)
+-column = start column (string) for calculation (default=U)
 -row = start row (int) for calculation (default=3)
--weeks = number of weeks to derive formula for (default=52)
--equations = the number of weeks to create equations for (default=4)
+-weeks = number of weeks to derive formula for (default=39)
+-equations = the number of weeks to create equations for (default=7)
 
 ### Linux
 ```

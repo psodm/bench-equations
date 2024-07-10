@@ -44,7 +44,7 @@ func generateFormula(startColumn string, row, formulaWeeks, benchWeek int) strin
 	for i := 0; i < formulaWeeks; i++ {
 		column := columnString(sInt - 64 + i*6)
 		f := fmt.Sprintf(
-			"SUMIFS('Resource Schedule'!$%s%d,'Resource Schedule'!$%s$2\">\"&TODAY()-7,'Resource Schedule'!$%s$2\"<=\"&TODAY()+%d)+",
+			"SUMIFS('Resource Schedule'!$%s%d,'Resource Schedule'!$%s$2>TODAY()-7,'Resource Schedule'!$%s$2<=TODAY()+%d)+",
 			column, row, column, column, benchWeek*7)
 		str = fmt.Sprintf("%s%s", str, f)
 	}
@@ -69,10 +69,10 @@ func toChar(i int) rune {
 func main() {
 	flags := flag.NewFlagSet(os.Args[0], flag.ExitOnError)
 
-	start := flags.String("column", "T", "first column to calculate from [T]")
-	weeks := flags.Int("weeks", 52, "number of weeks to include [52]")
+	start := flags.String("column", "U", "first column to calculate from [T]")
+	weeks := flags.Int("weeks", 39, "number of weeks to include [52]")
 	row := flags.Int("row", 3, "row to calculate for [3]")
-	equations := flags.Int("equations", 4, "number of equations to write (each one is one week) [4]")
+	equations := flags.Int("equations", 7, "number of equations to write (each one is one week) [4]")
 
 	err := flags.Parse(os.Args[1:])
 	if err != nil {
